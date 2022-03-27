@@ -367,7 +367,7 @@
                             </div>
                             <div class=" col-xs-12 col-sm-6 form-group">
                                 <label for="email">Unit:</label>
-                                <input type="text" class="form-control" id="email" placeholder="Enter Email"
+                                <input type="text" class="form-control unit" id="unit" placeholder="Enter Email"
                                     name="email">
                             </div>
                             <div class=" col-xs-12 col-sm-6 form-group">
@@ -754,14 +754,18 @@
                                 <div class=" col-xs-12 col-sm-6 form-group">
                                     <label for="email">Category:</label>
                                     <select name="category[]" required=""
-                                        class="form-control category select2 select2-hidden-accessible"
-                                        style="width: 100%;" onchange="categorychange(this)" data-select2-id="1"
-                                        tabindex="-1" aria-hidden="true" id="aaaaaaa37">
-                                        <option disabled="" selected="selected" data-select2-id="3" id="category">Select
-                                            Category </option>
-                                        <option value="1">valima </option>
-                                        <option value="2">Baraat </option>
-                                    </select>
+                                    class="form-control category select2 select2-hidden-accessible"
+                                    style="width: 100%;" onchange="categorychange(this)" data-select2-id="1"
+                                    tabindex="-1" aria-hidden="true" id="aaaaaaa">
+                                    <option disabled="" selected="selected" data-select2-id="3" id="category">Select
+                                        Category </option>
+                                    @php
+                                        $categories = \App\Models\Category::all();
+                                    @endphp
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }} </option>
+                                    @endforeach
+                                </select>
                                 </div>
                                 <div class=" col-xs-12 col-sm-6 form-group">
                                     <label for="email">Product:</label>
@@ -783,7 +787,7 @@
                                 </div>
                                 <div class=" col-xs-12 col-sm-6 form-group">
                                     <label for="email">Unit:</label>
-                                    <input type="text" class="form-control" id="email" placeholder="Enter Email"
+                                    <input type="text" class="form-control unit" id="unit" placeholder="Enter Email"
                                         name="email">
                                 </div>
                                 <div class=" col-xs-12 col-sm-6 form-group">
