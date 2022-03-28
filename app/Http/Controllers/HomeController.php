@@ -11,6 +11,7 @@ use App\Models\TermAndCondition;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use PDF;
 
 class HomeController extends Controller
@@ -47,7 +48,7 @@ class HomeController extends Controller
         return $item;
     }
     public function purcahse(Request $request){
-        // return $request->all();
+//         return $request->all();
         $order = new Order();
         $order->customer_name = $request->name ;
         $order->customer_address = $request->address ;
@@ -63,14 +64,20 @@ class HomeController extends Controller
             $order_detail->category_id = $request->category[$i];
             $order_detail->product_id = $request->product[$i];
             $order_detail->item_id = $request->item[$i];
+            $order_detail->qty = $request->qty[$i];
+            $order_detail->amount = $request->sub_total[$i];
             $order_detail->save();
         }
-        dd("done");
+        $sum = OrderDetail::where('order_id',$order->id)->sum('amount');
+        Session::flash('total',$sum);
+        $order_detail = OrderDetail::where('order_id',$order->id)->get();
+        $data['order']=$order;
+        $data['order_detail']=$order_detail;
+//        dd($data);
+//        Session::flash('total',)
+        $pdf = PDF::loadView('invoice.invoice',['data' => $data]);
 
-
-        $pdf = PDF::loadView('invoice.invoice');
-
-        return $pdf->download('itsolutionstuff.pdf');
+        return $pdf->download('dabar_caters_invoice.pdf');
         return $request->all();
     }
 

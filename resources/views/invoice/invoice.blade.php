@@ -1,208 +1,162 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8" />
-		<title>A simple, clean, and responsive HTML invoice template</title>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Darbar Caters</title>
+    <style>
+        body{
+            background-color: #F6F6F6;
+            margin: 0;
+            padding: 0;
+        }
+        h1,h2,h3,h4,h5,h6{
+            margin: 0;
+            padding: 0;
+        }
+        p{
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            width: 80%;
+            margin-right: auto;
+            margin-left: auto;
+        }
+        .brand-section{
+            background-color: #eb1f27;
+            padding: 10px 40px;
+        }
+        .logo{
+            width: 50%;
+        }
 
-		<style>
-			.invoice-box {
-				max-width: 800px;
-				margin: auto;
-				padding: 30px;
-				border: 1px solid #eee;
-				box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-				font-size: 16px;
-				line-height: 24px;
-				font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
-				color: #555;
-			}
+        .row{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .col-6{
+            width: 50%;
+            flex: 0 0 auto;
+        }
+        .text-white{
+            color: #fff;
+        }
+        .company-details{
+            float: right;
+            text-align: right;
+        }
+        .body-section{
+            padding: 16px;
+            border: 1px solid gray;
+        }
+        .heading{
+            font-size: 20px;
+            margin-bottom: 08px;
+        }
+        .sub-heading{
+            color: #262626;
+            margin-bottom: 05px;
+        }
+        table{
+            background-color: #fff;
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table thead tr{
+            border: 1px solid #111;
+            background-color: #f2f2f2;
+        }
+        table td {
+            vertical-align: middle !important;
+            text-align: center;
+        }
+        table th, table td {
+            padding-top: 08px;
+            padding-bottom: 08px;
+        }
+        .table-bordered{
+            box-shadow: 0px 0px 5px 0.5px gray;
+        }
+        .table-bordered td, .table-bordered th {
+            border: 1px solid #dee2e6;
+        }
+        .text-right{
+            text-align: end;
+        }
+        .w-20{
+            width: 20%;
+        }
+        .float-right{
+            float: right;
+        }
+    </style>
+</head>
+<body>
 
-			.invoice-box table {
-				width: 100%;
-				line-height: inherit;
-				text-align: left;
-			}
+<div class="container">
+    <div class="brand-section">
+        <div class="row">
+            <div class="col-6">
+                <h1 class="text-white"> Darbar Caterers & Decorators</h1>
+            </div>
 
-			.invoice-box table td {
-				padding: 5px;
-				vertical-align: top;
-			}
+        </div>
+    </div>
 
-			.invoice-box table tr td:nth-child(2) {
-				text-align: right;
-			}
+    <div class="body-section">
+        <div class="row">
+            <div class="col-6">
+                <h2 class="heading">Invoice No : {{$data['order']->id}}</h2>
+                <p class="sub-heading">No of People :  {{$data['order']->nop}} </p>
+                <p class="sub-heading">Event : {{$data['order']->event}}</p>
+                <p class="sub-heading">Email Address : {{$data['order']->customer_email}} </p>
+            </div>
+            <div class="col-6">
+                <p class="sub-heading">Full Name: {{$data['order']->customer_name}} </p>
+                <p class="sub-heading">Address:  {{$data['order']->customer_address}}</p>
+                <p class="sub-heading">Contact:  {{$data['order']->customer_contact}}</p>
+                <p class="sub-heading">WhatsApp: {{$data['order']->whatsapp}} </p>
+            </div>
+        </div>
+    </div>
 
-			.invoice-box table tr.top table td {
-				padding-bottom: 20px;
-			}
+    <div class="body-section">
+        <h3 class="heading">Ordered Items</h3>
+        <br>
+        <table class="table-bordered">
+            <thead>
+            <tr>
+                <th>Item</th>
+                <th class="w-20">Quantity</th>
+                <th class="w-20">Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                @foreach($data['order_detail'] as $order_detail)
+                    <td>{{$order_detail->item->name}}</td>
 
-			.invoice-box table tr.top table td.title {
-				font-size: 45px;
-				line-height: 45px;
-				color: #333;
-			}
+{{--                <td{{\App\Models\Item::where('id',$order_detail->item_id)->pluck('name')->first()}}</td>--}}
+                    <td>{{$order_detail->qty}}</td>
+                <td>{{$order_detail->item->charge_amount}}</td>
+            </tr>
+            @endforeach
 
-			.invoice-box table tr.information table td {
-				padding-bottom: 40px;
-			}
 
-			.invoice-box table tr.heading td {
-				background: #eee;
-				border-bottom: 1px solid #ddd;
-				font-weight: bold;
-			}
+            <tr>
+                <td colspan="2" class="text-right">Total</td>
+                <td> {{\Illuminate\Support\Facades\Session::get('total')}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <br>
 
-			.invoice-box table tr.details td {
-				padding-bottom: 20px;
-			}
+    </div>
 
-			.invoice-box table tr.item td {
-				border-bottom: 1px solid #eee;
-			}
 
-			.invoice-box table tr.item.last td {
-				border-bottom: none;
-			}
+    </div>
+</div>
 
-			.invoice-box table tr.total td:nth-child(2) {
-				border-top: 2px solid #eee;
-				font-weight: bold;
-			}
-
-			@media only screen and (max-width: 600px) {
-				.invoice-box table tr.top table td {
-					width: 100%;
-					display: block;
-					text-align: center;
-				}
-
-				.invoice-box table tr.information table td {
-					width: 100%;
-					display: block;
-					text-align: center;
-				}
-			}
-
-			/** RTL **/
-			.invoice-box.rtl {
-				direction: rtl;
-				font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
-			}
-
-			.invoice-box.rtl table {
-				text-align: right;
-			}
-
-			.invoice-box.rtl table tr td:nth-child(2) {
-				text-align: left;
-			}
-		</style>
-	</head>
-
-	<body>
-		<div class="invoice-box">
-			<table cellpadding="0" cellspacing="0">
-				<tr class="top">
-					<td colspan="2">
-						<table>
-							<tr>
-								<td class="title">
-									<img src="https://www.darbarcater.com/img/logo.png" style="width: 100%; max-width: 300px" />
-								</td>
-
-								<td>
-									Invoice #: 123<br />
-									Created: January 1, 2015<br />
-								</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-
-				<tr class="information">
-					<td colspan="2">
-						<table>
-							<tr>
-								<td>
-									DARBAR CATERERS & DECORATOR<br />
-									(+92) 321 327 227 1-2<br />
-									Jamshed Road # 1, Near Binori <br> Town Masjid, Karachi Pakistan
-								</td>
-
-								<td>
-									Customer Name<br />
-									Customer Phone number<br />
-									Customer E-mail
-								</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-
-				<tr class="heading">
-					<td>Detail</td>
-
-					<td></td>
-				</tr>
-
-				<tr class="item">
-					<td>Address</td>
-
-					<td>flat no 504, mustafa arcade Shah Waliullah road,
-                        Karachi
-                        </td>
-				</tr>
-
-				<tr class="item">
-					<td>Number of People</td>
-
-					<td>125</td>
-				</tr>
-
-				<tr class="item">
-					<td>WhatsApp</td>
-
-					<td>03003644277</td>
-				</tr>
-
-				<tr class="item">
-					<td>Event</td>
-
-					<td>Baraat</td>
-				</tr>
-                <br>
-                <tr class="heading">
-					<td>Item</td>
-
-					<td>Price</td>
-				</tr>
-
-				<tr class="item">
-					<td>Website design</td>
-
-					<td>$300.00</td>
-				</tr>
-
-				<tr class="item">
-					<td>Hosting (3 months)</td>
-
-					<td>$75.00</td>
-				</tr>
-
-				<tr class="item last">
-					<td>Domain name (1 year)</td>
-
-					<td>$10.00</td>
-				</tr>
-
-				<tr class="total">
-					<td></td>
-
-					<td>Total: $385.00</td>
-				</tr>
-			</table>
-		</div>
-	</body>
+</body>
 </html>
-© 2022 GitHub, Inc.
-Terms
