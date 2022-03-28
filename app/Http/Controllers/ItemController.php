@@ -39,9 +39,11 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request->all();
         $item = new Item();
         $item->product_id = $request->product;
         $item->name = $request->item_name;
+        $item->unit = $request->unit;
         $item->labour_cost = $request->labour_cost;
         $item->making_cost = $request->making_cost;
         $item->charge_amount = $request->charge_amount;
