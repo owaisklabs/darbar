@@ -331,7 +331,7 @@
                             </div>
                         </div>
                     <div class="col-lg-12">
-                        <div class="customer_records " style="display: flex">
+                        <div class="customer_records flex-pc ">
                             <div class=" col-xs-12 col-sm-6 form-group">
                                 <label for="email">Category:</label>
                                 <select name="category[]" required=""
@@ -846,7 +846,14 @@
                     display: block;
                     width: 100%;
                 }
-
+                .flex-pc {
+                    display: flex;
+                }
+                @media only screen and (max-width: 991px) {
+                    .flex-pc {
+                        display: initial !important;
+                    }
+                }
             </style>
 
 </body>
