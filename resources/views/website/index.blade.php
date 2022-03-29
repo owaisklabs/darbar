@@ -403,7 +403,7 @@
                     </form>
                     <div class="totaldiv">
 
-                        <label for=""><b>Total</b></label>
+                        <label for=""><b>Total : </b></label>
                         <label for="" id="grandtotal"></label>
                     </div>
                     <style>

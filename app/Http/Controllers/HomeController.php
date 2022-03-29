@@ -80,9 +80,14 @@ class HomeController extends Controller
         return $pdf->download('dabar_caters_invoice.pdf');
         return $request->all();
     }
-
-
-
-
-
+    public function order(){
+        $order = Order::has('orderProduct')->latest()->get();
+//        return $order['0']->orderProduct->sum('amount');
+        return view('admin.order.order',get_defined_vars());
+    }
+    public function orderDetail($id){
+//        dd($id);
+        $order= Order::find($id);
+        return view('admin/order.order-detail',get_defined_vars());
+    }
 }

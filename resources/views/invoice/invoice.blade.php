@@ -133,8 +133,8 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
                 @foreach($data['order_detail'] as $order_detail)
+            <tr>
                     <td>{{$order_detail->item->name}}</td>
 
 {{--                <td{{\App\Models\Item::where('id',$order_detail->item_id)->pluck('name')->first()}}</td>--}}
