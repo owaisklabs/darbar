@@ -18,9 +18,9 @@
         rel='stylesheet' type='text/css'>
 
     <link rel="stylesheet" type="text/css" href="{{ url('style.css') }}" media="screen">
-    <link rel="stylesheet" type="text/css" href="{{url('css/main.css')}}" media="screen">
+    <link rel="stylesheet" type="text/css" href="{{ url('css/main.css') }}" media="screen">
     <!-- Responsive -->
-    <link rel="stylesheet" type="text/css" href="{{url('css/responsive.css')}}" media="screen">
+    <link rel="stylesheet" type="text/css" href="{{ url('css/responsive.css') }}" media="screen">
     <!--[if lt IE 9]>
     <script type="text/javascript" src="js/ie.js"></script>
     <script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -291,7 +291,7 @@
                 <!--===| Reservation Banner end|===-->
                 <div class="container">
                     <h2 class="red">Menu</h2>
-                    <form action="{{route('purchase')}}" method="POST">
+                    <form action="{{ route('purchase') }}" method="POST">
                         @csrf
                         <div class="row">
                             <div class=" col-xs-12 col-sm-6 form-group">
@@ -330,84 +330,85 @@
                                     placeholder="Enter Number of Person" name="nop">
                             </div>
                         </div>
-                    <div class="col-lg-12">
-                        <div class="customer_records flex-pc ">
-                            <div class=" col-xs-12 col-sm-6 form-group">
-                                <label for="email">Category:</label>
-                                <select name="category[]" required=""
-                                    class="form-control category select2 select2-hidden-accessible"
-                                    style="width: 100%;" onchange="categorychange(this)" data-select2-id="1"
-                                    tabindex="-1" aria-hidden="true" id="aaaaaaa">
-                                    <option disabled="" selected="selected" data-select2-id="3" id="category">Select
-                                        Category </option>
-                                    @php
-                                        $categories = \App\Models\Category::all();
-                                    @endphp
-                                    @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }} </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class=" col-xs-12 col-sm-6 form-group">
-                                <label for="email">Product:</label>
-                                <select name="product[]" required=""
-                                    class="form-control product select2 select2-hidden-accessible"
-                                    onchange="productchange(this)" style="width: 100%;" data-select2-id="1"
-                                    tabindex="-1" aria-hidden="true">
+                        <div class="col-lg-12">
+                            <div class="customer_records flex-pc ">
+                                <div class=" col-xs-12 col-sm-6 form-group">
+                                    <label for="email">Category:</label>
+                                    <select name="category[]" required=""
+                                        class="form-control category select2 select2-hidden-accessible"
+                                        style="width: 100%;" onchange="categorychange(this)" data-select2-id="1"
+                                        tabindex="-1" aria-hidden="true" id="aaaaaaa">
+                                        <option disabled="" selected="selected" data-select2-id="3" id="category">Select
+                                            Category </option>
+                                        @php
+                                            $categories = \App\Models\Category::all();
+                                        @endphp
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->name }} </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class=" col-xs-12 col-sm-6 form-group">
+                                    <label for="email">Product:</label>
+                                    <select name="product[]" required=""
+                                        class="form-control product select2 select2-hidden-accessible"
+                                        onchange="productchange(this)" style="width: 100%;" data-select2-id="1"
+                                        tabindex="-1" aria-hidden="true">
 
-                                </select>
-                            </div>
-                            <div class=" col-xs-12 col-sm-6 form-group">
-                                <label for="email">Item:</label>
-                                <select name="item[]" onchange="itemchange(this)" required=""
-                                    class="form-control item select2 select2-hidden-accessible" style="width: 100%;"
-                                    data-select2-id="1" tabindex="-1" aria-hidden="true">
+                                    </select>
+                                </div>
+                                <div class=" col-xs-12 col-sm-6 form-group">
+                                    <label for="email">Item:</label>
+                                    <select name="item[]" onchange="itemchange(this)" required=""
+                                        class="form-control item select2 select2-hidden-accessible"
+                                        style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">
 
-                                </select>
-                            </div>
-                            <div class=" col-xs-12 col-sm-6 form-group">
-                                <label for="email">Unit:</label>
-                                <input type="text" class="form-control unit" id="unit" placeholder="Enter Email"
-                                    name="email">
-                            </div>
-                            <div class=" col-xs-12 col-sm-6 form-group">
-                                <label for="email">Rate:</label>
-                                <input type="text" class="form-control rate" id="rate" placeholder="Enter Email"
-                                    name="email">
+                                    </select>
+                                </div>
+                                <div class=" col-xs-12 col-sm-6 form-group">
+                                    <label for="email">Unit:</label>
+                                    <input type="text" class="form-control unit" id="unit" placeholder="Enter Email"
+                                        name="email">
+                                </div>
+                                <div class=" col-xs-12 col-sm-6 form-group">
+                                    <label for="email">Rate:</label>
+                                    <input type="text" class="form-control rate" id="rate" placeholder="Enter Email"
+                                        name="email">
+                                </div>
+
+                                <div class=" col-xs-12 col-sm-6 form-group">
+                                    <label for="email">qty:</label>
+                                    <input type="number" class="form-control" value="0" id="email"
+                                        placeholder="Enter Email" name="qty[]" onchange="calculateTotal(this)">
+                                </div>
+                                <div class=" col-xs-12 col-sm-6 form-group">
+                                    <label for="email">Sub Total:</label>
+                                    <input type="number" class="form-control total" value="0" id="email"
+                                        placeholder="Enter Email" name="sub_total[]">
+                                </div>
+
+                                <a class="extra-fields-customer " href="javascript:void(0)">Add More</a>
                             </div>
 
-                            <div class=" col-xs-12 col-sm-6 form-group">
-                                <label for="email">qty:</label>
-                                <input type="number" class="form-control" value="0" id="email"
-                                    placeholder="Enter Email" name="qty[]" onchange="calculateTotal(this)">
-                            </div>
-                            <div class=" col-xs-12 col-sm-6 form-group">
-                                <label for="email">Sub Total:</label>
-                                <input type="number" class="form-control total" value="0" id="email"
-                                    placeholder="Enter Email" name="sub_total[]">
-                            </div>
-
-                            <a class="extra-fields-customer " href="javascript:void(0)">Add More</a>
+                            <div class="customer_records_dynamic"></div>
                         </div>
+                        <button type="button" onclick="calculateGrandTotal()" class="btn btn-default">Calculate
+                            Total</button>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
+                    <div class="totaldiv">
 
-                        <div class="customer_records_dynamic"></div>
+                        <label for=""><b>Total</b></label>
+                        <label for="" id="grandtotal"></label>
                     </div>
-                    <button type="button" onclick="calculateGrandTotal()" class="btn btn-default">Calculate
-                        Total</button>
-                    <button type="submit" class="btn btn-default">Submit</button>
-                </form>
-<div class="totaldiv">
+                    <style>
+                        .totaldiv {
+                            font-size: 25px;
+                            font-weight: bold;
+                            text-align: right;
+                        }
 
-    <label for=""><b>Total</b></label>
-    <label for="" id="grandtotal"></label>
-</div>
-<style>
-    .totaldiv{
-        font-size: 25px;
-        font-weight: bold;
-        text-align: right;
-    }
-</style>
+                    </style>
 
                 </div>
                 <!--==| Reservation Top Section Start |==-->
@@ -761,7 +762,7 @@
                 // })
                 $('.extra-fields-customer').click(function() {
                     // $('.customer_records').clone().appendTo('.customer_records_dynamic');
-                        $('.customer_records_dynamic').append(`
+                    $('.customer_records_dynamic').append(`
                         <div class="remove flex-pc" >
                                 <div class=" col-xs-12 col-sm-6 form-group">
                                     <label for="email">Category:</label>
@@ -772,7 +773,7 @@
                                     <option disabled="" selected="selected" data-select2-id="3" id="category">Select
                                         Category </option>
                                     @php
-                                        $categories = \App\Models\Category::all();
+                                    $categories = \App\Models\Category::all();
                                     @endphp
                                     @foreach ($categories as $category)
                                         <option value="{{ $category->id }}">{{ $category->name }} </option>
@@ -846,14 +847,33 @@
                     display: block;
                     width: 100%;
                 }
+
                 .flex-pc {
                     display: flex;
                 }
+
+                .customer_records_dynamic .remove.flex-pc {
+                    position: relative;
+                    height: 100%;
+                    display: block !important;
+                }
+
+                .customer_records_dynamic .remove.flex-pc a.remove-field.btn-remove-customer {
+                    position: relative;
+                    /* bottom: 0; */
+                    z-index: 99999;
+                }
+
+                .customer_records_dynamic .form-group {
+                    position: relative;
+                }
+
                 @media only screen and (max-width: 991px) {
                     .flex-pc {
                         display: initial !important;
                     }
                 }
+
             </style>
 
 </body>
