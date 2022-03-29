@@ -392,9 +392,14 @@
 
                             <div class="customer_records_dynamic"></div>
                         </div>
+                        <div class="col-6">
+
                         <button type="button" onclick="calculateGrandTotal()" class="btn btn-default">Calculate
                             Total</button>
-                        <button type="submit" class="btn btn-default">Submit</button>
+                        </div>
+                        <div class="col-6">
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </div>
                     </form>
                     <div class="totaldiv">
 
