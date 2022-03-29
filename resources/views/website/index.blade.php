@@ -762,7 +762,7 @@
                 $('.extra-fields-customer').click(function() {
                     // $('.customer_records').clone().appendTo('.customer_records_dynamic');
                         $('.customer_records_dynamic').append(`
-                        <div class="remove" style="display: flex">
+                        <div class="remove flex-pc" >
                                 <div class=" col-xs-12 col-sm-6 form-group">
                                     <label for="email">Category:</label>
                                     <select name="category[]" required=""
