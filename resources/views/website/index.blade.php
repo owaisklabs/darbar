@@ -17,10 +17,10 @@
     <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic'
         rel='stylesheet' type='text/css'>
 
-    <link rel="stylesheet" type="text/css" href="{{ asset('style.css') }}" media="screen">
-    <link rel="stylesheet" type="text/css" href="css/main.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="{{ url('style.css') }}" media="screen">
+    <link rel="stylesheet" type="text/css" href="{{url('css/main.css')}}" media="screen">
     <!-- Responsive -->
-    <link rel="stylesheet" type="text/css" href="css/responsive.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="{{url('css/responsive.css')}}" media="screen">
     <!--[if lt IE 9]>
     <script type="text/javascript" src="js/ie.js"></script>
     <script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
