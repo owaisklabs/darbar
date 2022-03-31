@@ -27,6 +27,9 @@ Route::get('/', function () {
 Route::get('/catering', function () {
     return view('website.catering');
 });
+Route::get('home',function (){
+    return redirect()->route('order');
+});
 Route::get('getProduct/{id}',[App\Http\Controllers\HomeController::class,'getProduct'])->name('getProduct');
 Route::get('getItem/{id}',[App\Http\Controllers\HomeController::class,'getItem'])->name('getItem');
 Route::get('getItemDetail/{id}',[App\Http\Controllers\HomeController::class,'getItemDetail'])->name('getItemDetail');
