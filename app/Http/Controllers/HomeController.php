@@ -28,9 +28,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user =  User::all();
-        // dd($user);
-        return view('admin.user.user',get_defined_vars());
+       return  redirect()->route('order');
     }
     public function getProduct($id)
     {
