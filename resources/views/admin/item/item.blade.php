@@ -16,6 +16,7 @@
                 <th scope="col">Product</th>
                 <th scope="col">Name</th>
                 <th scope="col">Labour Cost</th>
+                <th scope="col">Making Cost</th>
                 <th scope="col">Charge Amount</th>
                 <th scope="col">Total Amount</th>
                 <th scope="col">Actions</th>
@@ -26,6 +27,7 @@
             <tr class="text-center">
                 <th scope="col">{{$item->id}}</th>
                 <td class="text-bold">{{$item->product->name}}</td>
+                <td>{{$item->name}}</td>
                 <td>{{$item->labour_cost}}</td>
                 <td>{{$item->making_cost}}</td>
                 <td>{{$item->charge_amount}}</td>
