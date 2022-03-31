@@ -296,37 +296,37 @@
                         <div class="row">
                             <div class=" col-xs-12 col-sm-6 form-group">
                                 <label for="email">Name:</label>
-                                <input type="text" class="form-control" id="email" placeholder="Enter Email"
+                                <input type="text" class="form-control" required id="email" placeholder="Enter Email"
                                     name="name">
                             </div>
                             <div class="col-xs-12 col-sm-6 form-group">
                                 <label for="pwd">Address:</label>
-                                <input type="text" class="form-control" id="pwd" placeholder="Enter Address"
+                                <input type="text" class="form-control" required id="pwd" placeholder="Enter Address"
                                     name="address">
                             </div>
                             <div class=" col-xs-12 col-sm-6 form-group">
                                 <label for="email">Contact:</label>
-                                <input type="number" class="form-control" id="email" placeholder="Enter email"
+                                <input type="number" class="form-control" required id="email" placeholder="Enter email"
                                     name="contact">
                             </div>
                             <div class="col-xs-12 col-sm-6 form-group">
                                 <label for="pwd">Event:</label>
-                                <input type="text" class="form-control" id="pwd" placeholder="Enter Event"
+                                <input type="text" class="form-control" required id="pwd" placeholder="Enter Event"
                                     name="event">
                             </div>
                             <div class=" col-xs-12 col-sm-6 form-group">
                                 <label for="email">Email:</label>
-                                <input type="email" class="form-control" id="email" placeholder="Enter Email"
+                                <input type="email" class="form-control" required id="email" placeholder="Enter Email"
                                     name="email">
                             </div>
                             <div class="col-xs-12 col-sm-6 form-group">
                                 <label for="text">Whatsapp:</label>
-                                <input type="number" class="form-control" id="pwd" placeholder="Enter Whatsapp"
+                                <input type="number" class="form-control" required id="pwd" placeholder="Enter Whatsapp"
                                     name="whatsapp">
                             </div>
                             <div class="col-xs-12 col-sm-6 form-group">
                                 <label for="text">Number of Person:</label>
-                                <input type="number" class="form-control" id="pwd"
+                                <input type="number" required class="form-control" id="pwd"
                                     placeholder="Enter Number of Person" name="nop">
                             </div>
                         </div>
@@ -857,25 +857,27 @@
                     display: flex;
                 }
 
-                .customer_records_dynamic .remove.flex-pc {
-                    position: relative;
-                    height: 100%;
-                    display: block !important;
-                }
 
-                .customer_records_dynamic .remove.flex-pc a.remove-field.btn-remove-customer {
-                    position: relative;
-                    /* bottom: 0; */
-                    z-index: 99999;
-                }
-
-                .customer_records_dynamic .form-group {
-                    position: relative;
-                }
 
                 @media only screen and (max-width: 991px) {
                     .flex-pc {
                         display: initial !important;
+                    }
+                    .customer_records_dynamic .remove.flex-pc {
+                        position: relative;
+                        height: 100%;
+                        display: block !important;
+                    }
+
+                    .customer_records_dynamic .remove.flex-pc a.remove-field.btn-remove-customer {
+                        position: relative;
+                        /* bottom: 0; */
+                        z-index: 99999;
+                    }
+
+                    .customer_records_dynamic .form-group {
+                        position: relative;
+                    }
                     }
                 }
 
