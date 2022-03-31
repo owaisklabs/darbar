@@ -22,7 +22,7 @@ if (Auth::user()) {
 }
 
 Route::get('/', function () {
-    return redirect('order');
+    return view('website.index');
 });
 Route::get('/catering', function () {
     return view('website.catering');
