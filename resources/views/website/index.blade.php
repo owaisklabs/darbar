@@ -368,12 +368,12 @@
                                 <div class=" col-xs-12 col-sm-6 form-group">
                                     <label for="email">Unit:</label>
                                     <input type="text" class="form-control unit" id="unit" placeholder="Enter Email"
-                                        name="email">
+                                        name="unit[]">
                                 </div>
                                 <div class=" col-xs-12 col-sm-6 form-group">
                                     <label for="email">Rate:</label>
                                     <input type="text" class="form-control rate" id="rate" placeholder="Enter Email"
-                                        name="email">
+                                        name="rate[]">
                                 </div>
 
                                 <div class=" col-xs-12 col-sm-6 form-group">
@@ -806,12 +806,12 @@
                                 <div class=" col-xs-12 col-sm-6 form-group">
                                     <label for="email">Unit:</label>
                                     <input type="text" class="form-control unit" id="unit" placeholder="Enter Email"
-                                        name="email">
+                                        name="unit[]">
                                 </div>
                                 <div class=" col-xs-12 col-sm-6 form-group">
                                     <label for="email">Rate:</label>
                                     <input type="text" class="form-control rate" id="rate" placeholder="Enter Email"
-                                        name="email">
+                                        name="rate[]">
                                 </div>
                                 <div class=" col-xs-12 col-sm-6 form-group">
                                     <label for="email">qty:</label>
