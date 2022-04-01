@@ -392,14 +392,8 @@
 
                             <div class="customer_records_dynamic"></div>
                         </div>
-                        <div class="col-6">
-
-                        <button type="button" onclick="calculateGrandTotal()" class="btn btn-default">Calculate
-                            Total</button>
-                        </div>
-                        <div class="col-6">
-                            <button type="submit" class="btn btn-default">Submit</button>
-                        </div>
+                         <button type="button" style="padding: 12px 13px!important;" onclick="calculateGrandTotal()" class="btn btn-default">Calculate  Total</button>
+                         <button type="submit" style="padding: 12px 13px!important;" class="btn btn-default">Submit</button>
                     </form>
                     <div class="totaldiv">
 

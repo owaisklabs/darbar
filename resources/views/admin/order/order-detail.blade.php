@@ -43,6 +43,7 @@
                     <th>Product</th>
                     <th>Item</th>
                     <th>Amount</th>
+                    <th>Unit</th>
                     <th>Qty</th>
                 </tr>
                 </thead>
@@ -53,6 +54,7 @@
                     <td>{{$item->product->name}}</td>
                     <td>{{$item->item->name}}</td>
                     <td>{{$item->amount}}</td>
+                    <td>{{$item->item->unit}}</td>
                     <td>{{$item->qty}}</td>
                 </tr>
                 @endforeach
