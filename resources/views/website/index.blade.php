@@ -330,7 +330,7 @@
                                     placeholder="Enter Number of Person" name="nop">
                             </div>
                         </div>
-                        <div class="col-lg-12">
+                        <div class="col-lg-12" style="margin-bottom: 14px;">
                             <div class="customer_records flex-pc ">
                                 <div class=" col-xs-12 col-sm-6 form-group">
                                     <label for="email">Category:</label>
@@ -387,7 +387,9 @@
                                         placeholder="Enter Email" name="sub_total[]">
                                 </div>
 
-                                <a class="extra-fields-customer " href="javascript:void(0)">Add More</a>
+                                <div>
+                                    <a class="extra-fields-customer btn btn-primary btn-style" href="javascript:void(0)">Add</a>
+                                </div>
                             </div>
 
                             <div class="customer_records_dynamic"></div>
@@ -819,12 +821,12 @@
                                 </div>
 
 
-                                <a href="#" class="remove-field btn-remove-customer">Remove</a>
+                                <a href="#" class="remove-field btn btn-primary btn-style btn-remove-customer">Remove</a>
                             </div>
                         `)
                     $('.customer_records_dynamic .customer_records').addClass('single remove');
                     $('.single .extra-fields-customer').remove();
-                    $('.single').append('<a href="#" class="remove-field btn-remove-customer">Remove</a>');
+                    $('.single').append('<a href="#" class="remove-field btn-remove-customer btn btn-primary btn-style">Remove</a>');
                     $('.customer_records_dynamic > .single').attr("class", "remove");
 
                     $('.customer_records_dynamic input').each(function() {
@@ -850,6 +852,13 @@
                 .flex-pc {
                     display: flex;
                 }
+                .btn-style{
+                    padding: 4px 5px;
+                    margin-top: 24px;
+                    font-weight: 800;
+                    width: 90px;
+                    height: 36px;
+                }
 
 
 
@@ -873,7 +882,6 @@
                         position: relative;
                     }
                     }
-                }
 
             </style>
 
