@@ -28,35 +28,40 @@ class HomeController extends Controller
      */
     public function index()
     {
-       return  redirect()->route('order');
+        return redirect()->route('order');
     }
+
     public function getProduct($id)
     {
-        $product = Product::where('category_id',$id)->get();
+        $product = Product::where('category_id', $id)->get();
         return $product;
     }
+
     public function getItem($id)
     {
-        $item = Item::where('product_id',$id)->get();
+        $item = Item::where('product_id', $id)->get();
         return $item;
     }
+
     public function getItemDetail($id)
     {
         $item = Item::find($id);
         return $item;
     }
-    public function purcahse(Request $request){
+
+    public function purcahse(Request $request)
+    {
 //         return $request->all();
         $order = new Order();
-        $order->customer_name = $request->name ;
-        $order->customer_address = $request->address ;
-        $order->customer_contact = $request->contact ;
-        $order->event = $request->event ;
-        $order->customer_email = $request->email ;
-        $order->whatsapp = $request->whatsapp ;
-        $order->nop = $request->nop ;
+        $order->customer_name = $request->name;
+        $order->customer_address = $request->address;
+        $order->customer_contact = $request->contact;
+        $order->event = $request->event;
+        $order->customer_email = $request->email;
+        $order->whatsapp = $request->whatsapp;
+        $order->nop = $request->nop;
         $order->save();
-        for ($i=0; $i <count($request->category); $i++) {
+        for ($i = 0; $i < count($request->category); $i++) {
             $order_detail = new OrderDetail();
             $order_detail->order_id = $order->id;
             $order_detail->category_id = $request->category[$i];
@@ -66,26 +71,52 @@ class HomeController extends Controller
             $order_detail->amount = $request->sub_total[$i];
             $order_detail->save();
         }
-        $sum = OrderDetail::where('order_id',$order->id)->sum('amount');
-        Session::flash('total',$sum);
-        $order_detail = OrderDetail::where('order_id',$order->id)->get();
-        $data['order']=$order;
-        $data['order_detail']=$order_detail;
+        $sum = OrderDetail::where('order_id', $order->id)->sum('amount');
+        Session::flash('total', $sum);
+        $order_detail = OrderDetail::where('order_id', $order->id)->get();
+        $data['order'] = $order;
+        $data['order_detail'] = $order_detail;
 //        dd($data);
 //        Session::flash('total',)
-        $pdf = PDF::loadView('invoice.invoice',['data' => $data]);
+        $pdf = PDF::loadView('invoice.invoice', ['data' => $data]);
 
         return $pdf->download('dabar_caters_invoice.pdf');
         return $request->all();
     }
-    public function order(){
+
+    public function order()
+    {
         $order = Order::has('orderProduct')->latest()->get();
 //        return $order['0']->orderProduct->sum('amount');
-        return view('admin.order.order',get_defined_vars());
+        return view('admin.order.order', get_defined_vars());
     }
-    public function orderDetail($id){
+
+    public function orderDetail($id)
+    {
 //        dd($id);
-        $order= Order::find($id);
-        return view('admin/order.order-detail',get_defined_vars());
+        $order = Order::find($id);
+        return view('admin/order.order-detail', get_defined_vars());
+    }
+
+    public function searchOrder(Request $request)
+    {
+        $to = $request->to_date;
+        $from = $request->from_date;
+
+//        return $request->all();
+        $order = "";
+        if ($request->customer_name){
+            $order = Order::where('customer_name',$request->customer_name)->get();
+        }
+        if ($request->from_date && $request->to_date ){
+            $order = Order::whereBetween('created_at',[$from,$to])->get();
+        }
+        if($request->from_date && $request->to_date && $request->customer_name){
+            $order = Order::whereBetween('created_at',[$from,$to])
+                ->where('customer_name',$request->customer_name)
+                ->get();
+        }
+        return view('admin.order.order', get_defined_vars());
+
     }
 }

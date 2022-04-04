@@ -42,6 +42,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('/item',\App\Http\Controllers\ItemController::class);
     Route::get('order',[\App\Http\Controllers\HomeController::class,'order'])->name('order');
     Route::get('order-detail/{id}',[\App\Http\Controllers\HomeController::class,'orderDetail'])->name('order-detail');
+    Route::post('search-order',[\App\Http\Controllers\HomeController::class,'searchOrder'])->name('search-order');
 });
 
 
